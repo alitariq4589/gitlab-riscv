@@ -2,6 +2,8 @@
 
 This document describes how to build GitLab runner for RISC-V on a RISC-V machine.
 
+The gitlab runner will be used as docker executor for better security implementation.
+
 ## Build machine specifications
 
 Build Machine: RISC-V VisionFive 2
@@ -14,7 +16,7 @@ go version (from package manager): go1.22.2 linux/riscv64
 1. Install pre-requisites
 
 ```
-sudo apt-get install -y mercurial git-core wget make build-essential
+sudo apt-get install -y docker mercurial git-core wget make build-essential
 ```
 
 2. Clone the repository
@@ -39,4 +41,6 @@ make runner-and-helper-bin-host
 ```
 
 The binary will be generated as `<root-of-repository>/out/binaries/gitlab-runner-linux-riscv64`
+
+For mitigating security risks, it is better to create a separate account execute the gitlab-runner binary from there.
 
